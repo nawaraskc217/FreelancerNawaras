@@ -1,0 +1,1224 @@
+@use './css/blocks';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    body {
+        @apply p-0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-heading;
+    }
+}
+
+@layer components {
+
+    .prose input[type="search"],
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="date"],
+    input[type="month"],
+    input[type="week"],
+    input[type="time"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="color"],
+    textarea {
+        @apply border border-gray-300 rounded px-2 py-1;
+    }
+
+    .custom-logo-link {
+        @apply flex flex-shrink-0 items-center no-underline;
+    }
+
+    .custom-logo {
+        @apply max-w-[150px] md:max-w-[200px] h-auto object-contain transition-opacity hover:opacity-90;
+    }
+
+    article.prose>[class^="wp-"],
+    article.prose>[class*=" wp-"] {
+        @apply mt-4;
+    }
+
+
+    a.wp-block-button__link,
+    .wp-element-button {
+        @apply bg-[#32373c] border-0 text-white no-underline transition-colors duration-200;
+
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        padding: calc(0.667em + 2px) calc(1.333em + 2px);
+
+        &:hover {
+            @apply bg-brand-600 text-white;
+        }
+    }
+
+    /* =========================================
+       Sidebar & Widget Base Styles
+       ========================================= */
+    .widget {
+        @apply mb-8;
+
+        /* Gutenberg Headings inside Widgets */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            @apply mt-6 mb-3;
+
+            &:not(.has-text-color) {
+                @apply text-slate-900;
+            }
+
+            &:not([class*="-font-family"]) {
+                @apply font-heading font-bold;
+            }
+        }
+
+        h1:not([class*="-font-size"]) {
+            @apply text-2xl;
+        }
+
+        h2:not([class*="-font-size"]) {
+            @apply text-xl;
+        }
+
+        h3:not([class*="-font-size"]) {
+            @apply text-lg;
+        }
+
+        h4:not([class*="-font-size"]),
+        h5:not([class*="-font-size"]),
+        h6:not([class*="-font-size"]) {
+            @apply text-base;
+        }
+
+        /* Remove top margin if the heading is the very first element inside the widget */
+        >h1:first-child,
+        >h2:first-child,
+        >h3:first-child,
+        >h4:first-child,
+        >h5:first-child,
+        >h6:first-child {
+            @apply mt-0;
+        }
+
+        /* Paragraphs */
+        p {
+            @apply mb-4 leading-relaxed;
+
+            &:not(.has-text-color) {
+                @apply text-slate-600;
+            }
+
+            &:not([class*="-font-size"]) {
+                @apply text-sm;
+            }
+
+            &:last-child {
+                @apply mb-0;
+            }
+        }
+
+        /* Links */
+        a {
+            @apply transition-colors duration-200 no-underline;
+
+            &:not(.has-text-color) {
+                @apply text-slate-700 hover:text-brand-600;
+            }
+        }
+
+        /* Gutenberg Lists (Categories, Archives, Navigation) */
+        ul,
+        ol {
+            @apply list-none pl-0 m-0 space-y-0;
+
+            li {
+                @apply text-sm py-3;
+
+                &:not(.has-text-color) {
+                    @apply text-slate-600;
+                }
+
+                &:not(.has-background) {
+                    @apply border-b border-slate-100;
+                }
+
+                &:first-child {
+                    @apply pt-0;
+                }
+
+                &:last-child {
+                    @apply border-0 pb-0;
+                }
+
+                /* Handle nested lists */
+                ul,
+                ol {
+                    @apply mt-3 pl-4 border-l-2 border-slate-100;
+                }
+            }
+        }
+
+        /* Override specific Gutenberg Blocks inside Widgets */
+
+        /* --- RSS Block --- */
+        .wp-block-rss {
+            @apply space-y-0 pl-0;
+
+            li.wp-block-rss__item {
+                @apply flex flex-col py-4 border-b border-slate-100;
+
+                &:first-child {
+                    @apply pt-0;
+                }
+
+                &:last-child {
+                    @apply border-0 pb-0;
+                }
+
+                .wp-block-rss__item-title {
+                    @apply mb-1;
+
+                    a {
+                        @apply leading-snug transition-colors block;
+
+                        &:not(.has-text-color) {
+                            @apply text-slate-900 hover:text-brand-600;
+                        }
+
+                        &:not([class*="-font-size"]) {
+                            @apply text-base font-bold;
+                        }
+                    }
+                }
+
+                .wp-block-rss__item-publish-date,
+                .wp-block-rss__item-author {
+                    @apply font-medium uppercase tracking-wider inline-block mr-3;
+
+                    &:not(.has-text-color) {
+                        @apply text-slate-500;
+                    }
+
+                    &:not([class*="-font-size"]) {
+                        @apply text-xs;
+                    }
+                }
+
+                .wp-block-rss__item-excerpt {
+                    @apply mt-2 line-clamp-3 leading-relaxed;
+
+                    &:not(.has-text-color) {
+                        @apply text-slate-600;
+                    }
+
+                    &:not([class*="-font-size"]) {
+                        @apply text-sm;
+                    }
+                }
+            }
+        }
+
+        /* --- Search Block (All Variations) --- */
+        .wp-block-search {
+            @apply mb-0;
+
+            .wp-block-search__label {
+                @apply hidden;
+            }
+
+            .wp-block-search__inside-wrapper {
+                @apply flex w-full items-stretch;
+            }
+
+            .wp-block-search__input {
+                @apply flex-1 w-full border border-slate-300 px-4 py-2.5 focus:outline-none text-sm transition-all m-0;
+
+                &:not(.has-background) {
+                    @apply bg-slate-50 focus:bg-white;
+                }
+
+                &:not(.has-text-color) {
+                    @apply text-slate-900;
+                }
+            }
+
+            .wp-block-search__button {
+                @apply font-bold px-5 py-2.5 transition-colors text-sm flex items-center justify-center m-0;
+
+                &:not(.has-background) {
+                    @apply bg-brand-600 hover:bg-brand-700;
+                }
+
+                &:not(.has-text-color) {
+                    @apply text-white;
+                }
+
+                svg {
+                    @apply w-5 h-5 fill-current;
+                }
+            }
+
+            &.wp-block-search__button-outside {
+                .wp-block-search__inside-wrapper {
+                    @apply gap-2;
+                }
+
+                .wp-block-search__input {
+                    @apply rounded-lg focus:ring-2 focus:ring-brand-600;
+                }
+
+                .wp-block-search__button {
+                    @apply rounded-lg;
+                }
+            }
+
+            &.wp-block-search__button-inside {
+                .wp-block-search__inside-wrapper {
+                    @apply border border-slate-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-brand-600 transition-all;
+
+                    &:not(.has-background) {
+                        @apply bg-slate-50 focus-within:bg-white;
+                    }
+                }
+
+                .wp-block-search__input {
+                    @apply border-none focus:ring-0 bg-transparent;
+                }
+
+                .wp-block-search__button {
+                    @apply rounded-none;
+                }
+            }
+
+            &.wp-block-search__icon-button .wp-block-search__button {
+                @apply px-4;
+            }
+        }
+
+        /* Tag Cloud Block */
+        .wp-block-tag-cloud {
+            @apply flex flex-wrap gap-2;
+
+            a {
+                @apply inline-block text-xs font-medium px-3 py-1.5 rounded transition-colors border-none;
+                font-size: 0.75rem !important;
+
+                &:not(.has-background) {
+                    @apply bg-slate-100 hover:bg-brand-600;
+                }
+
+                &:not(.has-text-color) {
+                    @apply text-slate-600 hover:text-white;
+                }
+            }
+        }
+
+        /* Calendar Block */
+        .wp-block-calendar {
+            table {
+                @apply w-full text-sm text-center border-collapse;
+
+                th {
+                    @apply bg-slate-100 text-slate-700 py-2 font-bold;
+                }
+
+                td {
+                    @apply py-2 border border-slate-100;
+                }
+
+                a {
+                    @apply font-bold text-brand-600 underline;
+                }
+            }
+        }
+
+        /* --- Latest Posts Block --- */
+        .wp-block-latest-posts {
+            @apply space-y-0;
+
+            li {
+                @apply flex flex-col py-4 border-b border-slate-100;
+
+                &:first-child {
+                    @apply pt-0;
+                }
+
+                &:last-child {
+                    @apply border-0 pb-0;
+                }
+
+                .wp-block-latest-posts__post-title {
+                    @apply leading-snug transition-colors block mb-1;
+
+                    &:not(.has-text-color) {
+                        @apply text-slate-900 hover:text-brand-600;
+                    }
+
+                    &:not([class*="-font-size"]) {
+                        @apply text-base font-bold;
+                    }
+                }
+
+                .wp-block-latest-posts__post-author,
+                .wp-block-latest-posts__post-date {
+                    @apply font-medium uppercase tracking-wider inline-block mr-3 mb-1;
+
+                    &:not(.has-text-color) {
+                        @apply text-slate-500;
+                    }
+
+                    &:not([class*="-font-size"]) {
+                        @apply text-xs;
+                    }
+                }
+
+                .wp-block-latest-posts__post-excerpt {
+                    @apply mt-2 line-clamp-3 leading-relaxed;
+
+                    &:not(.has-text-color) {
+                        @apply text-slate-600;
+                    }
+
+                    &:not([class*="-font-size"]) {
+                        @apply text-sm;
+                    }
+                }
+            }
+        }
+
+        /* --- Latest Comments Block --- */
+        .wp-block-latest-comments {
+            @apply space-y-0;
+
+            li.wp-block-latest-comments__comment {
+                @apply py-4 border-b border-slate-100;
+
+                &:first-child {
+                    @apply pt-0;
+                }
+
+                &:last-child {
+                    @apply border-0 pb-0;
+                }
+            }
+
+            &.has-avatars li.wp-block-latest-comments__comment {
+                @apply flex gap-4 items-start;
+            }
+
+            .wp-block-latest-comments__comment-avatar {
+                @apply rounded-full w-10 h-10 object-cover mt-1 shadow-sm border border-slate-200;
+            }
+
+            article {
+                @apply flex-1 min-w-0;
+            }
+
+            .wp-block-latest-comments__comment-meta {
+                @apply text-xs leading-relaxed mb-1.5 ml-0;
+
+                &:not(.has-text-color) {
+                    @apply text-slate-500;
+                }
+
+                a.wp-block-latest-comments__comment-author,
+                a.wp-block-latest-comments__comment-link {
+                    @apply font-bold transition-colors;
+
+                    &:not(.has-text-color) {
+                        @apply text-slate-800 hover:text-brand-600;
+                    }
+                }
+            }
+
+            .wp-block-latest-comments__comment-excerpt {
+                @apply text-sm italic p-3 rounded-lg border border-slate-100 relative ml-0;
+
+                &:not(.has-text-color) {
+                    @apply text-slate-600;
+                }
+
+                &:not(.has-background) {
+                    @apply bg-slate-50;
+                }
+
+                p {
+                    @apply mb-0;
+                }
+
+                &::before {
+                    content: '';
+                    @apply absolute -top-2 left-4 border-4 border-transparent border-b-slate-100;
+                }
+            }
+        }
+
+        /* =========================================
+           Legacy WP Classic Widgets
+           ========================================= */
+
+        /* Select Dropdowns (Common in Categories, Archives) */
+        select {
+            @apply w-full border border-slate-300 rounded-lg text-slate-700 py-2.5 pl-4 pr-10 bg-white focus:ring-2 focus:ring-brand-600 focus:border-brand-600 shadow-sm text-sm outline-none cursor-pointer appearance-none transition-all;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+        }
+
+        /* Tag Cloud */
+        &.widget_tag_cloud .tagcloud {
+            @apply flex flex-wrap gap-2;
+
+            a {
+                @apply inline-block bg-slate-100 text-slate-600 text-xs font-medium px-3 py-1.5 rounded hover:bg-brand-600 hover:text-white transition-colors border-none;
+                font-size: 0.75rem !important;
+            }
+        }
+
+        /* Calendar */
+        &.widget_calendar {
+            #wp-calendar {
+                @apply w-full text-sm text-center border-collapse;
+
+                caption {
+                    @apply font-bold text-slate-900 mb-3 uppercase tracking-wider text-xs;
+                }
+
+                th {
+                    @apply bg-slate-100 text-slate-700 py-2 font-bold;
+                }
+
+                td {
+                    @apply py-2 border border-slate-100;
+                }
+
+                a {
+                    @apply font-bold text-brand-600 underline hover:text-brand-700;
+                }
+            }
+        }
+
+        /* Generic Legacy Lists (Recent Entries, Pages, Meta, Categories) */
+        &.widget_recent_entries,
+        &.widget_pages,
+        &.widget_meta,
+        &.widget_categories,
+        &.widget_archive {
+            ul {
+                @apply list-none pl-0 m-0 space-y-0;
+
+                li {
+                    @apply flex flex-wrap justify-between items-center py-2.5 border-b border-slate-100 text-sm text-slate-600;
+
+                    &:first-child {
+                        @apply pt-0;
+                    }
+
+                    &:last-child {
+                        @apply border-0 pb-0;
+                    }
+
+                    a {
+                        @apply flex-1 text-slate-700 hover:text-brand-600 transition-colors;
+                    }
+
+                    ul {
+                        @apply w-full flex-none mt-2 pl-4 border-l-2 border-slate-100;
+                    }
+                }
+            }
+        }
+
+        /* Text Widget */
+        &.widget_text {
+            .textwidget {
+                @apply text-slate-600 text-sm leading-relaxed;
+
+                p {
+                    @apply mb-4 last:mb-0;
+                }
+
+                img {
+                    @apply rounded-lg h-auto max-w-full shadow-sm mt-2;
+                }
+            }
+        }
+
+
+        /* =========================================
+           WooCommerce Legacy Widgets
+           ========================================= */
+
+        /* Product Search */
+        &.widget_product_search {
+            .woocommerce-product-search {
+                @apply relative flex w-full items-stretch;
+
+                label {
+                    @apply hidden;
+                }
+
+                .search-field {
+                    @apply flex-1 w-full border border-slate-300 rounded-l-lg px-4 py-2.5 bg-slate-50 focus:outline-none focus:bg-white focus:ring-2 focus:ring-brand-600 focus:border-brand-600 text-sm transition-all m-0;
+                }
+
+                button[type="submit"] {
+                    @apply bg-brand-600 text-white font-bold px-5 py-2.5 rounded-r-lg hover:bg-brand-700 transition-colors text-sm flex items-center justify-center m-0 border border-brand-600;
+                }
+            }
+        }
+
+        /* =========================================
+           WooCommerce Legacy Widgets (Products & Cart)
+           ========================================= */
+
+        /* Shared Product List & Shopping Cart Base */
+        &.widget_products,
+        &.widget_top_rated_products,
+        &.widget_recently_viewed_products,
+        &.widget_shopping_cart {
+
+            ul.product_list_widget,
+            .cart_list {
+                @apply list-none pl-0 m-0 space-y-0;
+
+                li {
+                    @apply relative flex flex-wrap items-center py-4 border-b border-slate-100;
+
+                    &:first-child {
+                        @apply pt-0;
+                    }
+
+                    &:last-child {
+                        @apply border-0 pb-0;
+                    }
+
+                    /* The Wrapper for Image and Title */
+                    >a:not(.remove) {
+                        @apply flex items-start gap-4 w-full no-underline;
+
+                        /* Group utility replacement */
+                        &:hover span,
+                        &:hover .product-title {
+                            @apply text-brand-600;
+                        }
+
+                        img {
+                            @apply w-16 h-16 object-cover rounded-lg shadow-sm border border-slate-100 m-0 flex-shrink-0;
+                        }
+
+                        /* Title */
+                        span,
+                        .product-title {
+                            @apply font-bold text-slate-900 text-sm leading-snug transition-colors flex-1 pr-6;
+                            /* Reset any inline styles injected via PHP filters */
+                            font-size: 0.875rem !important;
+                        }
+                    }
+
+                    /* Formatting for Data Below Title (Price, Rating, Quantity) */
+                    /* ml-20 = 5rem offset (4rem image + 1rem gap) to align with text */
+                    >del,
+                    >ins,
+                    >.amount,
+                    >.star-rating,
+                    .quantity {
+                        @apply block ml-20 w-full mt-1;
+                    }
+
+                    >del {
+                        @apply text-slate-400 text-xs;
+
+                        .amount {
+                            @apply ml-0;
+                        }
+                    }
+
+                    >ins,
+                    >.amount {
+                        @apply text-brand-600 font-bold text-sm no-underline;
+                    }
+
+                    .star-rating {
+                        @apply text-yellow-400 text-xs;
+                    }
+
+                    /* Specific to Cart */
+                    .quantity {
+                        @apply text-slate-500 text-sm font-medium mt-1;
+
+                        .amount {
+                            @apply text-brand-600 font-bold ml-1 inline-block;
+                        }
+                    }
+
+                    /* Remove Button (Cart) */
+                    a.remove {
+                        @apply absolute top-4 right-0 w-6 h-6 flex items-center justify-center bg-slate-100 text-slate-500 hover:bg-red-500 hover:text-white rounded-full text-lg font-normal leading-none transition-all z-10 no-underline;
+                        /* Avoid overlap with first item padding */
+                    }
+
+                    &:first-child a.remove {
+                        @apply top-0;
+                    }
+                }
+            }
+        }
+
+        /* Shopping Cart Specific Extras (Totals & Buttons) */
+        &.widget_shopping_cart {
+            .widget_shopping_cart_content {
+
+                /* Subtotal */
+                .total {
+                    @apply flex justify-between items-center py-4 mt-2 border-t border-slate-200 mb-0;
+
+                    strong {
+                        @apply text-slate-500 uppercase tracking-wider text-xs;
+                    }
+
+                    .amount {
+                        @apply text-slate-900 font-extrabold text-lg;
+                    }
+                }
+
+                /* Buttons */
+                .buttons {
+                    @apply flex flex-col gap-3 m-0;
+
+                    a {
+                        @apply block w-full text-center px-4 py-3 rounded-lg font-bold text-sm transition-all m-0;
+
+                        &.button:not(.checkout) {
+                            @apply bg-slate-100 text-slate-800 hover:bg-slate-200 border border-transparent;
+                        }
+
+                        &.checkout {
+                            @apply bg-brand-600 text-white hover:bg-brand-700 shadow-sm hover:shadow-md;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* --- Legacy Recent Comments --- */
+        &.widget_recent_comments {
+            ul#recentcomments {
+                @apply list-none pl-0 m-0 space-y-0;
+
+                li {
+                    @apply py-3 border-b border-slate-100 text-sm text-slate-600 leading-relaxed;
+
+                    &:first-child {
+                        @apply pt-0;
+                    }
+
+                    &:last-child {
+                        @apply border-0 pb-0;
+                    }
+
+                    /* Author Name */
+                    .comment-author-link a,
+                    .comment-author-link {
+                        @apply font-bold text-slate-900 no-underline hover:text-brand-600 transition-colors;
+                    }
+
+                    /* Post Link */
+                    >a {
+                        @apply text-brand-600 hover:text-brand-700 transition-colors font-medium;
+                    }
+                }
+            }
+        }
+
+        /* --- Legacy RSS Widget --- */
+        &.widget_rss {
+            .widget-title {
+                @apply flex items-center gap-2;
+
+                /* Tame the ugly default RSS icon */
+                .rss-widget-icon {
+                    @apply w-4 h-4 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all;
+                }
+            }
+
+            ul {
+                @apply list-none pl-0 m-0 space-y-0;
+
+                li {
+                    @apply flex flex-col py-4 border-b border-slate-100;
+
+                    &:first-child {
+                        @apply pt-0;
+                    }
+
+                    &:last-child {
+                        @apply border-0 pb-0;
+                    }
+
+                    /* Title Link */
+                    a.rsswidget {
+                        @apply font-bold text-slate-900 text-base leading-snug hover:text-brand-600 transition-colors block mb-1 no-underline;
+                    }
+
+                    /* Date */
+                    .rss-date {
+                        @apply text-xs font-medium text-slate-400 uppercase tracking-wider block mb-2;
+                    }
+
+                    /* Summary / Excerpt */
+                    .rssSummary {
+                        @apply text-sm text-slate-600 line-clamp-3 leading-relaxed;
+                    }
+
+                    /* Author Citation */
+                    cite {
+                        @apply text-xs font-bold text-slate-500 mt-2 block not-italic;
+
+                        &::before {
+                            content: "— ";
+                        }
+                    }
+                }
+            }
+        }
+
+        /* (Note: widget_recent_entries is already styled by our Generic Legacy Lists block, 
+           but we ensure its anchor links look distinct here if needed) */
+        &.widget_recent_entries ul li a {
+            @apply font-medium text-slate-700 hover:text-brand-600;
+        }
+    }
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.nav-links .page-numbers {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    color: var(--color-slate-600);
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.nav-links .page-numbers:hover {
+    border-color: #cbd5e1;
+    background-color: #f8fafc;
+    color: var(--color-slate-900);
+}
+
+.nav-links .page-numbers.current {
+    background-color: var(--color-brand-600);
+    /* Brand Color */
+    border-color: var(--color-brand-600);
+    color: white;
+}
+
+/* =========================================
+   WooCommerce Typography & UI Overrides
+   ========================================= */
+@layer components {
+
+    /* --- Shop Archive Page --- */
+    .woocommerce ul.products li.product {
+
+        /* Product Title */
+        .woocommerce-loop-product__title {
+            @apply text-lg font-heading font-bold text-slate-900 mt-4 mb-2 transition-colors duration-200 hover:text-brand-600;
+        }
+
+        /* Product Price */
+        .price {
+            @apply text-brand-600 font-bold text-base block mb-4;
+
+            del {
+                @apply text-slate-400 font-normal mr-2 opacity-70;
+            }
+
+            ins {
+                @apply text-brand-600 no-underline;
+            }
+        }
+    }
+
+    /* --- Single Product Page --- */
+    .woocommerce div.product {
+
+        /* Product Title */
+        .product_title {
+            @apply text-3xl md:text-4xl font-heading font-bold text-slate-900 mb-4 tracking-tight;
+        }
+
+        .related.products,
+        .upsells.products,
+        .cross-sells.products {
+            @apply mt-12 clear-both;
+
+            >h2 {
+                @apply text-2xl font-heading font-bold text-slate-900 mb-8 tracking-tight;
+            }
+        }
+
+        /* Single Price */
+        p.price,
+        span.price {
+            @apply text-2xl text-brand-600 font-bold mb-6 block;
+
+            del {
+                @apply text-slate-400 font-normal mr-2 text-xl opacity-70;
+            }
+        }
+
+        /* Short Description */
+        .woocommerce-product-details__short-description,
+        .woocommerce-tabs {
+            @apply prose prose-slate max-w-none mb-8 leading-relaxed;
+        }
+
+        /* Add to Cart Button */
+        form.cart .button {
+            @apply bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-8 rounded-lg transition-all shadow-sm;
+        }
+
+        form.cart {
+            input.qty {
+                @apply w-16 text-center border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500;
+            }
+        }
+
+        /* Meta Info (SKU, Category) */
+        .product_meta {
+            @apply mt-8 pt-6 border-t border-slate-200 text-sm text-slate-500 space-y-2;
+
+            span {
+                @apply block;
+            }
+
+            a {
+                @apply text-slate-700 font-medium hover:text-brand-600 transition-colors;
+            }
+        }
+
+        /* --- Product Tabs --- */
+        .woocommerce-tabs {
+            @apply mt-16 pt-8 border-t border-slate-200;
+
+            ul.tabs {
+                @apply flex flex-wrap border-b border-slate-200 mb-8 pl-0 list-none gap-2;
+
+                li {
+                    @apply mb-0 border border-transparent rounded-t-lg transition-colors bg-slate-50;
+
+                    a {
+                        @apply block px-6 py-3 text-slate-600 font-medium hover:text-brand-600 no-underline;
+                    }
+
+                    &.active {
+                        @apply bg-white border-slate-200 border-b-white relative;
+                        bottom: -1px;
+
+                        a {
+                            @apply text-brand-600 font-bold;
+                        }
+                    }
+                }
+            }
+
+            /* Tab Content Typography */
+            .panel {
+                @apply prose prose-slate max-w-none;
+
+                h2 {
+                    @apply text-xl font-heading font-bold text-slate-900 mb-4 mt-2;
+                }
+            }
+        }
+    }
+
+
+
+    /* --- Shop Archive: Sorting & Buttons --- */
+
+    /* Default Sorting Dropdown */
+    .woocommerce .woocommerce-ordering {
+        @apply mb-8;
+
+        select {
+            @apply border border-slate-300 rounded-lg text-slate-700 py-2.5 pl-4 pr-10 bg-white focus:ring-2 focus:ring-brand-600 focus:border-brand-600 shadow-sm text-sm outline-none cursor-pointer transition-all appearance-none;
+            /* Custom chevron for select */
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+        }
+    }
+
+    /* Loop Add to Cart Button */
+    .woocommerce ul.products li.product .button {
+        @apply mt-4 block w-full text-center bg-slate-100 text-slate-800 font-bold py-3 px-4 rounded-lg text-sm hover:bg-brand-600 hover:text-white transition-colors duration-300 shadow-sm;
+
+        &.loading {
+            @apply opacity-70 cursor-wait;
+        }
+
+        &.added {
+            @apply bg-emerald-600 text-white hover:bg-emerald-700;
+        }
+    }
+
+
+    /* --- Single Product: Add to Cart, Qty, Variations --- */
+
+    .woocommerce div.product {
+
+        /* Flex layout for Cart Form */
+        form.cart {
+            @apply flex flex-wrap gap-4 items-center mb-8;
+
+            /* Quantity Input Wrapper */
+            div.quantity {
+                @apply flex items-center;
+
+                input.qty {
+                    @apply w-20 h-12 text-center border border-slate-300 rounded-lg shadow-sm focus:ring-2 focus:ring-brand-600 focus:border-brand-600 text-lg font-bold text-slate-800 bg-white outline-none transition-all;
+                    /* Hide default browser arrows */
+                    -moz-appearance: textfield;
+
+                    &::-webkit-outer-spin-button,
+                    &::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+                }
+            }
+
+            /* Single Product Button (Match height with Qty) */
+            .button {
+                @apply m-0 h-12 flex items-center justify-center;
+            }
+        }
+
+        .comment-form input.submit {
+            @apply mt-4 text-center bg-slate-100 text-slate-800 font-bold py-3 px-4 rounded-lg text-sm hover:bg-brand-600 hover:text-white transition-colors duration-300 shadow-sm;
+        }
+
+        /* Variations Form */
+        table.variations {
+            @apply w-full mb-6;
+
+            td,
+            th {
+                @apply py-3 align-middle border-b border-slate-100;
+            }
+
+            th {
+                @apply text-left font-bold text-slate-900 w-1/3 text-sm uppercase tracking-wider;
+
+                label {
+                    @apply mb-0;
+                }
+            }
+
+            td {
+                select {
+                    @apply w-full border border-slate-300 rounded-lg text-slate-700 py-2.5 pl-4 pr-10 bg-white focus:ring-2 focus:ring-brand-600 focus:border-brand-600 shadow-sm text-sm outline-none cursor-pointer appearance-none;
+                    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+                    background-position: right 0.5rem center;
+                    background-repeat: no-repeat;
+                    background-size: 1.5em 1.5em;
+                }
+
+                .reset_variations {
+                    @apply inline-block mt-2 text-xs font-bold text-brand-600 hover:text-brand-700 hover:underline uppercase tracking-wider;
+                }
+            }
+        }
+    }
+
+
+    /* --- General WooCommerce Tables (Attributes, Cart, Checkout) --- */
+
+    .woocommerce table.shop_table,
+    .woocommerce table.shop_attributes {
+        @apply w-full text-left border-collapse border border-slate-200 rounded-lg overflow-hidden mb-8 shadow-sm;
+
+        th,
+        td {
+            @apply p-4 border-b border-slate-200;
+        }
+
+        th {
+            @apply bg-slate-50 font-bold text-slate-900 w-1/3 md:w-1/4;
+        }
+
+        td {
+            @apply text-slate-600 bg-white;
+
+            p {
+                @apply m-0;
+            }
+        }
+
+        tr:last-child th,
+        tr:last-child td {
+            @apply border-b-0;
+        }
+    }
+
+    /* --- Shop Archive: Header (Breadcrumb, Title, Result Count) --- */
+    .woocommerce {
+
+        /* Breadcrumb */
+        .woocommerce-breadcrumb {
+            @apply text-sm text-slate-500 mb-6 flex flex-wrap items-center gap-2;
+
+            a {
+                @apply text-brand-600 hover:text-brand-700 font-medium no-underline transition-colors;
+            }
+        }
+
+        /* Page Title */
+        .woocommerce-products-header__title.page-title {
+            @apply text-3xl md:text-4xl font-heading font-extrabold text-slate-900 mb-6 tracking-tight;
+        }
+
+        /* Result Count & Ordering Wrapper (WooCommerce uses floats natively, we fix them) */
+        .woocommerce-result-count {
+            @apply float-none md:float-left text-sm font-medium text-slate-500 mt-0 md:mt-3 mb-4 md:mb-8;
+        }
+
+        .woocommerce-ordering {
+            @apply float-none md:float-right mb-8;
+        }
+
+        /* Clearfix to ensure products grid starts below the floating elements */
+        .woocommerce ul.products {
+            clear: both;
+        }
+
+        /* --- WooCommerce Pagination --- */
+
+        .woocommerce-pagination {
+            @apply mt-12 pt-8 border-t border-slate-200 clear-both;
+
+            ul.page-numbers {
+                @apply w-full flex flex-wrap justify-center items-center gap-2 p-0 m-0 list-none border-none;
+
+                li {
+                    @apply p-0 m-0 border-none border-0;
+
+                    /* The actual links and spans */
+                    span.page-numbers,
+                    a.page-numbers {
+                        @apply flex items-center justify-center w-10 h-10 rounded-lg text-sm font-medium text-slate-600 bg-white border border-slate-200 transition-all no-underline p-0 m-0;
+
+                        &:hover:not(.current):not(.dots) {
+                            @apply border-brand-600 text-brand-600 bg-brand-50;
+                        }
+
+                        &.current {
+                            @apply bg-brand-600 text-white border-brand-600;
+                        }
+
+                        &.dots {
+                            @apply border-none bg-transparent hover:bg-transparent text-slate-400;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* --- Sale Badge --- */
+        span.onsale {
+            @apply absolute top-4 left-4 bg-brand-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded shadow-sm z-10 flex items-center justify-center transition-transform hover:scale-105;
+
+            /* Override core WooCommerce hardcoded circle styles */
+            min-height: auto;
+            min-width: auto;
+            line-height: 1;
+            right: auto;
+            margin: 0;
+        }
+
+        /* Ensure parent containers are relative for absolute positioning */
+        ul.products li.product,
+        div.product .woocommerce-product-gallery {
+            @apply relative;
+        }
+    }
+
+}
+
+
+/* Optional: Global Safe Zone for Align Full blocks */
+.alignfull {
+    @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* =========================================
+   Global Alignments (Breakout System)
+   ========================================= */
+
+/* Prevent horizontal scrolling caused by 100vw breakout */
+body {
+    overflow-x: hidden;
+}
+
+/* Wide Width (1200px from theme.json) */
+.alignwide {
+    max-width: var(--wp--style--global--wide-size, 1200px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+
+/* Full Width (Edge to Edge) */
+.alignfull {
+    /* Break out of parent constraints */
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+}
+
+.page-template-fullwidth .alignfull {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Center alignment safety */
+.aligncenter {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block;
+}
+
+/* style.scss */

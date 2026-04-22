@@ -1,0 +1,146 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 2,
+    "settings": {
+        "appearanceTools": true,
+        "layout": {
+            "contentSize": "800px",
+            "wideSize": "1400px"
+        },
+        "color": {
+            "defaultPalette": false,
+            "defaultGradients": false,
+            "defaultDuotone": false,
+            "palette": [
+                {
+                    "slug": "brand-600",
+                    "color": "#ea580c",
+                    "name": "Brand Primary"
+                },
+                {
+                    "slug": "brand-700",
+                    "color": "#c2410c",
+                    "name": "Brand Dark"
+                },
+                {
+                    "slug": "slate-900",
+                    "color": "#0f172a",
+                    "name": "Slate 900"
+                },
+                {
+                    "slug": "slate-600",
+                    "color": "#475569",
+                    "name": "Slate 600"
+                },
+                {
+                    "slug": "slate-50",
+                    "color": "#f8fafc",
+                    "name": "Slate 50"
+                },
+                {
+                    "slug": "white",
+                    "color": "#ffffff",
+                    "name": "White"
+                }
+            ]
+        },
+        "typography": {
+            "defaultFontSizes": false,
+            "fontFamilies": [
+                {
+                    "fontFamily": "var(--font-heading), serif",
+                    "name": "Heading Font",
+                    "slug": "heading"
+                },
+                {
+                    "fontFamily": "var(--font-body), sans-serif",
+                    "name": "Body Font",
+                    "slug": "sans"
+                },
+                {
+                    "fontFamily": "JetBrains Mono, monospace",
+                    "name": "Mono",
+                    "slug": "mono"
+                }
+            ],
+            "fontSizes": [
+                {
+                    "slug": "sm",
+                    "size": "0.875rem",
+                    "name": "Small"
+                },
+                {
+                    "slug": "base",
+                    "size": "1rem",
+                    "name": "Normal"
+                },
+                {
+                    "slug": "lg",
+                    "size": "1.125rem",
+                    "name": "Large"
+                },
+                {
+                    "slug": "xl",
+                    "size": "1.25rem",
+                    "name": "Extra Large"
+                },
+                {
+                    "slug": "2xl",
+                    "size": "1.5rem",
+                    "name": "2X Large"
+                },
+                {
+                    "slug": "3xl",
+                    "size": "1.875rem",
+                    "name": "3X Large"
+                },
+                {
+                    "slug": "4xl",
+                    "size": "2.25rem",
+                    "name": "4X Large"
+                },
+                {
+                    "slug": "5xl",
+                    "size": "3rem",
+                    "name": "5X Large"
+                }
+            ]
+        }
+    },
+    "styles": {
+        "spacing": {
+            "padding": {
+                "right": "1.5rem",
+                "left": "1.5rem"
+            }
+        },
+        "typography": {
+            "fontFamily": "var(--font-body), sans-serif",
+            "fontSize": "1.2rem",
+            "lineHeight": "1.5"
+        },
+        "blocks": {
+            "core/post-title": {
+                "typography": {
+                    "fontSize": "var(--wp--preset--font-size--x-large)",
+                    "fontWeight": "800",
+                    "lineHeight": "1.2",
+                    "fontFamily": "var(--wp--preset--font-family--heading)"
+                }
+            },
+            "core/heading": {
+                "typography": {
+                    "fontWeight": "700"
+                }
+            }
+        },
+        "elements": {
+            "button": {
+                "color": {
+                    "text": "#ffffff",
+                    "background": "#0f172a"
+                }
+            }
+        }
+    }
+}

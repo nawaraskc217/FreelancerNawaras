@@ -1,0 +1,40 @@
+/* 2. Load Tailwind Config (Components & Utilities ONLY) */
+@use './css/blocks';
+@use './css/base-editor';
+@tailwind components;
+@tailwind utilities;
+/* 1. Import Shared Block Styles (MUST BE FIRST) */
+
+
+/* 3. Editor Specific Overrides (Optional) */
+.editor-styles-wrapper {
+    /* Optional: Add minimal font reset if needed, but avoid global resets */
+    background-color: white;
+}
+
+.block-editor-block-list__layout.is-root-container>.awt-wrapper {
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+@media (min-width: 820px) {
+
+    /* Align Right Fix */
+    .wp-block-button.alignright,
+    .wp-block-image.alignright,
+    .alignright {
+        float: right;
+        margin-right: calc((100% - var(--wp--style--global--content-size, 800px)) / 2) !important;
+        margin-left: 2em;
+    }
+
+    /* Align Left Fix */
+    .wp-block-button.alignleft,
+    .wp-block-image.alignleft,
+    .alignleft {
+        float: left;
+        margin-left: calc((100% - var(--wp--style--global--content-size, 800px)) / 2) !important;
+        margin-right: 2em;
+    }
+}

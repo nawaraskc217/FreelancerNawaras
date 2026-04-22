@@ -1,0 +1,213 @@
+/*
+Theme Name: AuthorPro
+Theme URI:
+Author: RS WP THEMES
+Author URI: https://rswpthemes.com/
+Description: AuthorPro is an elegant, minimalist WordPress theme tailored specifically for authors, writers, novelists, and publishers to brilliantly showcase their books and build a strong personal brand. Featuring a clean, typography-focused design, it includes beautifully crafted sections for book libraries, author bios, upcoming events, reader testimonials, and newsletters. Fully responsive, lightweight, and SEO-friendly, this theme provides the perfect canvas to highlight your literary works, connect with readers, and grow your audience.
+Version: 1.0.4
+Requires at least: 6.0
+Tested up to: 6.9
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: authorpro
+Tags: blog, news, e-commerce, grid-layout, one-column, two-columns, three-Columns, four-Columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, footer-widgets, flexible-header, theme-options, translation-ready, featured-images, block-styles, wide-blocks, sticky-post, featured-image-header, front-page-post-form, full-width-template, post-formats, threaded-comments
+Copyright: (c) 2026 RS WP THEMES
+*/
+
+/*--------------------------------------------------------------
+# Typography - Local Fonts
+--------------------------------------------------------------*/
+
+/* Inter - 400 (Regular) */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('./assets/fonts/inter-v20-latin-regular.woff2') format('woff2');
+}
+
+/* Inter - 700 (Bold) */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('./assets/fonts/inter-v20-latin-700.woff2') format('woff2');
+}
+
+/* Libre Baskerville - Regular */
+@font-face {
+    font-family: 'Libre Baskerville';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('./assets/fonts/libre-baskerville-v24-latin-regular.woff2') format('woff2');
+}
+
+/* Libre Baskerville - Italic */
+@font-face {
+    font-family: 'Libre Baskerville';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('./assets/fonts/libre-baskerville-v24-latin-italic.woff2') format('woff2');
+}
+
+/* Libre Baskerville - Bold */
+@font-face {
+    font-family: 'Libre Baskerville';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('./assets/fonts/libre-baskerville-v24-latin-700.woff2') format('woff2');
+}
+
+
+/* =========================================
+       WordPress Core Classes (Required)
+       ========================================= */
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    clip-path: none;
+    color: #21759b;
+    display: block;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}
+
+.alignleft {
+    float: left;
+    margin-right: 1.5rem;
+    /* mr-6 */
+    margin-bottom: 1.5rem;
+    /* mb-6 */
+}
+
+.alignright {
+    float: right;
+    margin-left: 1.5rem;
+    /* ml-6 */
+    margin-bottom: 1.5rem;
+    /* mb-6 */
+}
+
+.aligncenter {
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5rem;
+    /* mb-6 */
+}
+
+.wp-caption {
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+    /* mb-6 */
+}
+
+.wp-caption-text,
+.gallery-caption {
+    font-size: 0.875rem;
+    /* text-sm */
+    color: #64748b;
+    /* text-slate-500 */
+    font-style: italic;
+    margin-top: 0.5rem;
+    /* mt-2 */
+    text-align: center;
+    display: block;
+}
+
+.bypostauthor {
+    display: block;
+}
+
+/* Clearfix for floated elements (WP core aligns) */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*--------------------------------------------------------------
+# Clearings
+--------------------------------------------------------------*/
+.clear:before,
+.clear:after,
+.entry-content:before,
+.entry-content:after,
+.comment-content:before,
+.comment-content:after,
+.site-header:before,
+.site-header:after,
+.site-content:before,
+.site-content:after,
+.site-footer:before,
+.site-footer:after {
+    content: "";
+    display: table;
+    table-layout: fixed;
+}
+
+.clear:after,
+.entry-content:after,
+.comment-content:after,
+.site-header:after,
+.site-content:after,
+.site-footer:after {
+    clear: both;
+}
+
+*:has(> .alignleft),
+*:has(> .alignright) {
+    display: flow-root;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+}

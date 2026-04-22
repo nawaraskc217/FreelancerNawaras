@@ -1,0 +1,561 @@
+/* Primary Button */
+.wp-block-button.is-style-authorpro-primary .wp-block-button__link {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-brand-600 text-white font-bold rounded-lg shadow-lg hover:bg-brand-700 transition transform hover:-translate-y-0.5 w-full sm:w-auto;
+}
+
+/* Outline Button */
+.wp-block-button.is-style-authorpro-outline .wp-block-button__link {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-white text-slate-700 font-bold rounded-lg border border-slate-200 hover:border-brand-600 hover:text-white shadow-sm transition w-full sm:w-auto;
+}
+
+.wp-block-post-template .wp-block-post {
+    @apply mt-0;
+}
+
+/* =========================================
+   1. Navigation Block
+   ========================================= */
+.wp-block-navigation {
+    @apply flex gap-6 items-center list-none pl-0;
+
+    .wp-block-navigation-item__content {
+        @apply font-medium transition duration-200 no-underline;
+
+        &:not(.has-text-color) {
+            @apply text-slate-600 hover:text-brand-600;
+        }
+
+        &:not([class*="-font-size"]) {
+            @apply text-sm;
+        }
+    }
+
+    .current-menu-item>a.wp-block-navigation-item__content {
+        @apply text-brand-600 font-bold;
+    }
+
+    .wp-block-pages-list__item {
+        @apply mb-0 mt-0;
+    }
+
+    /* Dropdowns */
+    .wp-block-navigation__submenu-container {
+        @apply bg-white border border-slate-100 shadow-xl rounded-lg min-w-[200px] p-2 mt-2 z-50;
+
+        /* Invisible bridge to prevent menu closing on hover gap */
+        &::before {
+            content: "";
+            @apply absolute -top-4 left-0 w-full h-4 block;
+        }
+
+        .wp-block-navigation-item__content {
+            /* Basic structure always */
+            @apply block px-4 py-2 text-sm rounded-md transition-colors;
+
+            /* Default colors only if not overridden */
+            &:not(.has-text-color):not(.has-background) {
+                @apply text-slate-600 hover:bg-slate-50 hover:text-brand-600;
+            }
+        }
+    }
+}
+
+/* =========================================
+   2. Query Loop & Post Template
+   ========================================= */
+
+/* Query Loop Wrapper */
+.wp-block-query {
+    @apply mb-8;
+}
+
+/* The UL holding the posts */
+.wp-block-post-template {
+    /* Ensure list styles are killed in both editor and frontend */
+    @apply list-none p-0 m-0 grid gap-8;
+
+    /* Grid Columns Logic (Responsive) */
+    /* Note: Usually Query Loop handles columns via inline styles, 
+       but we can enforce a default if inline styles fail or for custom layouts */
+    &.is-layout-flow {
+        @apply flex flex-col gap-8;
+    }
+
+    /* Fix for Editor Specificity */
+    .editor-styles-wrapper & {
+        margin: 0 !important;
+        padding: 0 !important;
+        list-style: none !important;
+    }
+
+    /* The LI items (Posts) */
+    li {
+        @apply mb-0;
+        /* Reset WP default margin */
+    }
+}
+
+/* Post Title in Query Loop */
+.wp-block-post-title.editor-post-title__input {
+    @apply mb-3 leading-tight;
+
+    &:not(.has-text-color) {
+        @apply text-slate-900;
+    }
+
+    &:not([class*="-font-family"]) {
+        @apply font-heading font-bold;
+    }
+
+    &:not([class*="-font-size"]) {
+        @apply text-4xl;
+    }
+}
+
+.wp-block-post-title:not(.editor-post-title__input) {
+    @apply mb-3 leading-tight;
+
+    &:not(.has-text-color) {
+        @apply text-slate-900;
+    }
+
+    &:not([class*="-font-family"]) {
+        @apply font-heading font-bold;
+    }
+
+    &:not([class*="-font-size"]) {
+        @apply text-2xl;
+    }
+
+    a {
+        @apply no-underline hover:text-brand-600 transition-colors;
+    }
+}
+
+/* Post Excerpt */
+.wp-block-post-excerpt {
+    @apply leading-relaxed;
+
+    &:not(.has-text-color) {
+        @apply text-slate-600;
+    }
+
+    &:not([class*="-font-size"]) {
+        @apply text-base;
+    }
+}
+
+/* Post Date */
+.wp-block-post-date {
+    @apply font-medium uppercase tracking-wider mb-2;
+
+    &:not(.has-text-color) {
+        @apply text-slate-500;
+    }
+
+    &:not([class*="-font-size"]) {
+        @apply text-xs;
+    }
+}
+
+/* Pagination Wrapper */
+.wp-block-query-pagination {
+    @apply flex flex-wrap gap-2 items-center justify-center mt-12 pt-8 border-t border-slate-200;
+
+    /* Editor specific fix for the container */
+    .editor-styles-wrapper & {
+        max-width: 100%;
+    }
+}
+
+/* Page Numbers (Both Links and Spans) */
+.wp-block-query-pagination-numbers {
+    @apply flex gap-2;
+}
+
+/* Individual Numbers */
+.page-numbers {
+    @apply flex items-center justify-center w-10 h-10 rounded-lg text-sm font-medium text-slate-600 bg-white border border-slate-200 transition-all no-underline;
+
+    &:hover:not(.current):not(.dots) {
+        @apply border-brand-600 text-brand-600 bg-brand-50;
+    }
+
+    &.current {
+        @apply bg-brand-600 text-white border-brand-600;
+    }
+
+    &.dots {
+        @apply border-none bg-transparent;
+    }
+}
+
+/* Next/Prev Buttons */
+.wp-block-query-pagination-previous,
+.wp-block-query-pagination-next {
+    @apply inline-flex items-center font-medium text-sm text-slate-700 hover:text-brand-600 px-4 py-2;
+}
+
+/* =========================================
+   3. Post Author Block
+   ========================================= */
+.wp-block-post-author {
+    @apply flex items-center gap-4 my-8 p-6 rounded-xl border border-slate-100;
+
+    &:not(.has-background) {
+        @apply bg-slate-50;
+    }
+
+    .wp-block-post-author__avatar img {
+        @apply w-12 h-12 rounded-full border-2 border-white shadow-sm object-cover;
+    }
+
+    .wp-block-post-author__content {
+        @apply flex-1;
+    }
+
+    .wp-block-post-author__name {
+        @apply text-lg font-bold text-slate-900 block leading-tight;
+    }
+
+    .wp-block-post-author__bio {
+        @apply text-sm text-slate-600 mt-1 leading-relaxed;
+    }
+}
+
+/* =========================================
+   4. Post Navigation Links
+   ========================================= */
+.wp-block-post-navigation-link {
+    /* Ensure flex behavior works but keep padding */
+    @apply my-8 flex flex-wrap justify-between items-center px-4 sm:px-6 lg:px-8 box-border;
+
+    /* If specific alignment classes are used */
+    &.alignwide,
+    &.alignfull {
+        @apply w-full max-w-none;
+    }
+
+    a {
+        @apply inline-flex items-center text-sm font-bold text-slate-600 hover:text-brand-600 transition decoration-0 no-underline;
+    }
+
+    &.post-navigation-link-previous a::before {
+        content: "←";
+        @apply mr-2 font-normal;
+    }
+
+    &.post-navigation-link-next a::after {
+        content: "→";
+        @apply ml-2 font-normal;
+    }
+}
+
+/* =========================================
+   5. Comments System (Flattened & Modular)
+   ========================================= */
+
+/* 1. Main Wrapper (Spacing only) */
+.wp-block-comments {
+    @apply mt-12;
+}
+
+/* 2. Comments Title Block */
+.wp-block-comments-title,
+.wp-block-post-comments-form h2,
+.wp-block-comments h2 {
+    @apply font-heading text-2xl font-bold text-slate-900 mb-8;
+}
+
+/* 3. The Comment List (Independent) */
+.wp-block-comment-template {
+    @apply list-none pl-0 space-y-6;
+
+    /* Individual Comment Item */
+    li.comment {
+        @apply mb-0;
+
+        /* Flex Container */
+        .wp-block-columns {
+            @apply flex gap-4 items-start mb-6;
+        }
+
+        /* Avatar Column */
+        .wp-block-column:first-child {
+            @apply flex-shrink-0 w-12 flex-grow-0 basis-auto !important;
+
+            .wp-block-avatar img {
+                @apply w-12 h-12 rounded-full border-2 border-white shadow-sm object-cover;
+            }
+        }
+
+        /* Content Bubble */
+        .wp-block-column:not(:first-child) {
+            @apply flex-1 bg-slate-50 p-6 rounded-xl border border-slate-100 relative w-full min-w-0;
+
+            /* Author & Meta */
+            .wp-block-comment-author-name a {
+                @apply font-bold text-slate-900 no-underline hover:text-brand-600 transition;
+            }
+
+            .wp-block-group {
+                @apply flex flex-wrap items-center gap-2 mb-2 mt-1 text-xs text-slate-400;
+
+                a {
+                    @apply text-slate-400 hover:text-brand-600 no-underline transition;
+                }
+            }
+
+            /* Content Text */
+            .wp-block-comment-content {
+                @apply text-slate-600 text-sm leading-relaxed;
+
+                p {
+                    @apply mb-2 last:mb-0;
+                }
+            }
+
+            /* Reply Button */
+            .wp-block-comment-reply-link a {
+                @apply inline-block mt-3 text-xs font-bold text-brand-600 uppercase tracking-wider no-underline hover:text-brand-700;
+            }
+        }
+    }
+}
+
+/* 4. Comment Form (Independent) */
+/* Target specifically to avoid editor wrapper conflict */
+.comment-respond,
+.wp-block-post-comments-form:not(.block-editor-block-list__block) {
+    @apply bg-white p-6 md:p-8 rounded-xl border border-slate-200 shadow-sm my-10;
+
+    /* Section Title */
+    .comment-reply-title {
+        @apply text-2xl font-bold text-slate-900 mb-6 block;
+
+        small a {
+            @apply text-sm font-normal text-brand-600 ml-2 hover:underline;
+        }
+    }
+
+    /* Helper Text */
+    .logged-in-as,
+    .comment-notes,
+    .required-field-message {
+        @apply text-sm text-slate-500 mb-4 block;
+
+        a {
+            @apply text-brand-600 hover:text-brand-700 font-medium;
+        }
+    }
+
+    /* Labels */
+    label {
+        @apply block text-sm font-medium text-slate-700 mb-2;
+    }
+
+    /* Inputs */
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    textarea {
+        @apply w-full rounded-lg border-slate-300 shadow-sm focus:border-brand-500 focus:ring-brand-500 transition duration-150 ease-in-out text-slate-900 bg-slate-50 px-4 py-3;
+
+        &::placeholder {
+            @apply text-slate-400;
+        }
+    }
+
+    textarea {
+        @apply min-h-[160px] resize-y;
+    }
+
+    /* Submit Button */
+    .form-submit .submit,
+    .wp-block-button__link {
+        @apply inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 cursor-pointer transition-all mt-4;
+
+        text-decoration: none;
+        width: auto;
+    }
+
+    /* Editor Overrides */
+    .editor-styles-wrapper & {
+
+        textarea,
+        input {
+            @apply bg-slate-50 border border-slate-300;
+        }
+    }
+}
+
+/* =========================================
+   7. Miscellaneous & General Content
+   ========================================= */
+
+/* Site Title */
+.wp-block-site-title a {
+    @apply text-3xl font-extrabold text-slate-900 no-underline tracking-tight;
+}
+
+/* Search */
+.wp-block-search__input {
+    @apply w-full border border-slate-300 rounded-l-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent;
+}
+
+.wp-block-search__button {
+    @apply bg-brand-600 text-white rounded-r-md px-4 py-2 border border-brand-600 hover:bg-brand-700 transition cursor-pointer;
+}
+
+.wp-block-paragraph,
+.wp-block-post-excerpt__excerpt,
+.wp-block-post-excerpt__more-text,
+.wp-block-post-date,
+.wp-block-post-comments-form {
+    @apply prose-lg;
+}
+
+/* =========================================
+   1. Buttons (Zero Conflict)
+   ========================================= */
+.wp-block-button__link {
+    /* A. STRUCTURE (Always Apply) - Shape, Padding, Transition */
+    @apply px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm transition-all duration-200 no-underline inline-flex justify-center items-center cursor-pointer;
+
+    /* B. COLOR (Conditional) - Apply Theme Brand Color ONLY if "Raw" */
+    /* If the user picks a color in Editor, WP adds .has-background. We strictly avoid those. */
+    &:not(.has-background) {
+        @apply bg-brand-600 text-white;
+
+        &:hover {
+            @apply bg-brand-700;
+        }
+    }
+
+    /* Outline Button Variation */
+    .is-style-outline & {
+        /* Structure override */
+        @apply bg-transparent;
+
+        /* Color override only if raw */
+        &:not(.has-text-color):not(.has-background) {
+            @apply border-2 border-brand-600 text-brand-600;
+
+            &:hover {
+                @apply bg-brand-50;
+            }
+        }
+    }
+}
+
+/* =========================================
+   2. Blockquotes (Zero Conflict)
+   ========================================= */
+.wp-block-quote {
+    /* Structure */
+    @apply my-8 pl-4 border-l-4;
+
+    /* Typography */
+    p {
+        @apply italic leading-relaxed mb-4;
+
+        &:not([class*="-font-size"]) {
+            @apply text-lg;
+        }
+    }
+
+    cite {
+        @apply block font-bold not-italic;
+
+        &:not([class*="-font-size"]) {
+            @apply text-sm;
+        }
+    }
+
+    /* Color: Only if no custom color set */
+    &:not(.has-text-color) {
+        @apply text-slate-700 border-slate-300;
+
+        cite {
+            @apply text-slate-900;
+        }
+    }
+}
+
+/* =========================================
+   3. Pullquotes (Zero Conflict)
+   ========================================= */
+.wp-block-pullquote {
+    @apply py-8 my-10 font-bold text-center rounded-lg;
+
+    &:not([class*="-font-size"]) {
+        @apply text-2xl;
+    }
+
+    /* Only apply default background if none selected */
+    &:not(.has-background) {
+        @apply bg-slate-50;
+    }
+
+    /* Only apply default text color if none selected */
+    &:not(.has-text-color) {
+        @apply text-slate-800 italic;
+    }
+
+    /* Only apply brand border if it is a "raw" pullquote */
+    &:not(.has-background):not(.has-text-color) {
+        @apply border-l-4 border-brand-600;
+    }
+}
+
+/* =========================================
+   4. Separator (Zero Conflict)
+   ========================================= */
+.wp-block-separator {
+    @apply border-none h-px my-8;
+
+    /* Only color it if WP hasn't */
+    &:not(.has-background):not(.has-text-color) {
+        @apply bg-slate-200;
+    }
+}
+
+/* =========================================
+   5. Navigation & Query Loop (Layout Only)
+   ========================================= */
+/* Keep existing layout styles for Navigation and Query Loop as they handle structure, not just color */
+/* (Ensure specific color overrides are removed from these blocks in the file) */
+
+.wp-block-navigation .wp-block-navigation-item__content:not(.has-text-color) {
+    @apply text-slate-600 hover:text-brand-600;
+}
+
+.current-menu-item>a.wp-block-navigation-item__content {
+    @apply font-bold text-brand-600;
+}
+
+/* Login/Out */
+.wp-block-loginout a {
+    @apply text-brand-600 font-medium hover:underline;
+}
+
+/* =========================================
+   Safe Edge Constraints (Fix for Left/Right Align)
+   ========================================= */
+
+/* Buttons Block Wrapper */
+/* When buttons block is set to "Space Between" or Full Width */
+.wp-block-buttons {
+    /* Always keep padding on the container so buttons don't hit screen edge */
+    @apply px-4 sm:px-6 lg:px-8 box-border;
+
+    /* Reset padding if it's explicitly inside a constrained container to avoid double padding */
+    .authorpro-container & {
+        @apply px-0;
+    }
+
+    /* Fix for "Justify Item: Space Between" stretching to edges */
+    &.is-content-justification-space-between {
+        @apply w-full;
+    }
+}

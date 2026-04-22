@@ -1,0 +1,93 @@
+/* Layout Grid Bridge */
+.woocommerce-cart-form {
+    @apply lg:col-span-8;
+}
+
+.cart-collaterals {
+    @apply mt-16 lg:mt-0 sticky top-8 lg:col-span-4;
+}
+
+/* Table Styling */
+.shop_table.cart {
+    @apply w-full border-separate border-spacing-0 bg-white rounded-xl shadow-sm overflow-hidden border border-slate-200;
+}
+
+.shop_table.cart thead {
+    @apply bg-slate-50 hidden lg:table-header-group;
+}
+
+.shop_table.cart thead th {
+    @apply px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200;
+}
+
+/* Mobile Card Transformation */
+@media (max-width: 1023px) {
+
+    .shop_table.cart,
+    .shop_table.cart tbody,
+    .shop_table.cart tr,
+    .shop_table.cart td {
+        display: block;
+        width: 100%;
+    }
+
+    .shop_table.cart tr {
+        @apply mb-4 border-b border-slate-200 p-4;
+    }
+
+    .shop_table.cart td {
+        @apply flex justify-between items-center py-2 px-0 border-none;
+    }
+
+    .shop_table.cart td::before {
+        content: attr(data-title);
+        @apply font-bold text-slate-500;
+    }
+
+    .product-thumbnail {
+        @apply !inline-block;
+    }
+}
+
+/* Standard Row Styling */
+.cart_item {
+    @apply transition-colors hover:bg-slate-50/50;
+}
+
+.cart_item td {
+    @apply px-6 py-6 border-b border-slate-100;
+}
+
+/* Buttons & Actions */
+.actions {
+    @apply p-6 bg-slate-50/50;
+}
+
+.coupon {
+    @apply flex items-center gap-2;
+}
+
+#coupon_code {
+    @apply rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm;
+}
+
+.button[name="update_cart"] {
+    @apply bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded-md hover:bg-slate-50 font-medium transition-all !opacity-100;
+}
+
+.button[name="apply_coupon"] {
+    @apply bg-slate-800 text-white px-4 py-2 rounded-md hover:bg-slate-700 font-medium transition-all;
+}
+
+/* Totals Card */
+.cart_totals {
+    @apply bg-white p-6 rounded-xl shadow-sm border border-slate-200;
+}
+
+.cart_totals h2 {
+    @apply text-xl font-bold text-slate-900 mb-6 pb-4 border-b border-slate-100;
+}
+
+.checkout-button {
+    @apply block w-full text-center bg-indigo-600 text-white px-6 py-4 rounded-lg font-bold hover:bg-indigo-700 transition-all shadow-md mt-6;
+}
