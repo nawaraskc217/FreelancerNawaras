@@ -4,3 +4,4 @@
 [20-Apr-2026 13:22:52 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\GoldenAura\Local Sites\freelancer-nawaraskc\app\public\wp-content\themes\astra\functions.php on line 232
 [20-Apr-2026 13:22:54 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\GoldenAura\Local Sites\freelancer-nawaraskc\app\public\wp-content\themes\astra\functions.php on line 232
 [20-Apr-2026 13:30:19 UTC] PHP Warning:  Undefined array key "editor_post_id" in C:\Users\GoldenAura\Local Sites\freelancer-nawaraskc\app\public\wp-content\plugins\elementor\modules\history\revisions-manager.php on line 363
+[22-Apr-2026 07:16:29 UTC] Cron reschedule event error for hook: action_scheduler_run_queue, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"every_minute","args":["WP Cron"],"interval":60}
